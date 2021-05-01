@@ -2,14 +2,24 @@ import React, { useEffect, useState } from "react";
 import { DogBreed } from "../types/dog-types";
 
 const styles = {
-  container: {
-    marginTop: "20px",
+  wrapper: {
+    width: "40%",
+    height: "100%",
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
+  },
+  container: {
+    display: "flex",
+    "flex-direction": "column",
+    alignItems: "center",
+    backgroundColor: "#fbfbfb",
+    width: "80%",
+    height: "80%",
+    borderRadius: "10px",
   },
   title: {
     fontSize: "30px",
-    marginRight: "20px",
     fontFamily: "'Quicksand', sans-serif",
     "font-weight": "bold",
   },
@@ -22,6 +32,8 @@ const styles = {
     height: "40px",
     fontFamily: "'Quicksand', sans-serif",
     "font-weight": "bold",
+    "user-select": "none",
+    outline: "none",
   },
 };
 
@@ -38,22 +50,24 @@ const DogSelector = ({ breeds, onSelect }: DogSelectorProps) => {
   }, [breeds]);
 
   return (
-    <div style={styles.container}>
-      <div style={styles.title}>Choose a dog breed: </div>
-      <select
-        style={styles.select}
-        name="breeds"
-        id="breeds-select"
-        onChange={(e) => onSelect(e.target.value)}
-      >
-        {dogBreeds.map((breed) => {
-          return (
-            <option key={breed.value} value={breed.value}>
-              {breed.name}
-            </option>
-          );
-        })}
-      </select>
+    <div style={styles.wrapper}>
+      <div style={styles.container}>
+        <div style={styles.title}>Choose a dog breed: </div>
+        <select
+          style={styles.select}
+          name="breeds"
+          id="breeds-select"
+          onChange={(e) => onSelect(e.target.value)}
+        >
+          {dogBreeds.map((breed) => {
+            return (
+              <option key={breed.value} value={breed.value}>
+                {breed.name}
+              </option>
+            );
+          })}
+        </select>
+      </div>
     </div>
   );
 };

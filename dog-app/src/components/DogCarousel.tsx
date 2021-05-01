@@ -2,12 +2,16 @@ import { ReplayRounded } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 
 const styles = {
-  container: {
+  wrapper: {
+    width: "60%",
     height: "100%",
-    marginTop: "40px",
+  },
+  container: {
     display: "flex",
     "flex-direction": "column",
+    justifyContent: "center",
     alignItems: "center",
+    height: "100%",
   },
   image: {
     height: "70%",
@@ -47,16 +51,18 @@ const DogCarousel = ({ image, onRefreshImage }: DogCarouselProps) => {
   }, [image]);
 
   return (
-    <div style={styles.container}>
-      {dogImage ? (
-        <img style={styles.image} src={dogImage} alt="Invalid." />
-      ) : (
-        <div>No breed selected!!!</div>
-      )}
-      <button style={styles.button} onClick={onRefreshImage}>
-        New image
-        <ReplayRounded style={styles.icon} />
-      </button>
+    <div style={styles.wrapper}>
+      <div style={styles.container}>
+        {dogImage ? (
+          <img style={styles.image} src={dogImage} alt="Invalid." />
+        ) : (
+          <div>No breed selected!!!</div>
+        )}
+        <button style={styles.button} onClick={onRefreshImage}>
+          New image
+          <ReplayRounded style={styles.icon} />
+        </button>
+      </div>
     </div>
   );
 };

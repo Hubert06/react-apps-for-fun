@@ -35,8 +35,13 @@ export const fetchDogBreeds = async () => {
 };
 
 export const fetchRandomDogImage = async (breed: string) => {
+  let breedRoute = breed;
+  if (breed.includes("-")) {
+    const splittedBreed = breed.split("-");
+    breedRoute = `${splittedBreed[0]}/${splittedBreed[1]}`;
+  }
   const res: any = await axios.get(
-    `https://dog.ceo/api/breed/${breed}/images/random`
+    `https://dog.ceo/api/breed/${breedRoute}/images/random`
   );
   if (!res.data.status) console.log("Could not fetch random dog.");
   return res.data.message;
